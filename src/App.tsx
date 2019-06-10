@@ -15,7 +15,7 @@ class App extends Component<{}, IState> {
     const { counter, name } = this.state;
     return (
       <div>
-        <Form>
+        <Form onFormSubmit={this.onFormSubmit}>
           <Input value={name} onChange={this.onChange} />
         </Form>
         <Number count={counter} />
@@ -23,9 +23,15 @@ class App extends Component<{}, IState> {
       </div>
     );
   }
+
   onChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
     console.log(event.target);
   };
+
+  onFormSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+  };
+
   add = (): void => {
     this.setState(prev => {
       return {
